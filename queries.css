@@ -1,0 +1,345 @@
+/* Font size System (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 
+rem and em do NOT depend on html font-size in media queries, instead,
+we assume 1rem=1em=16px
+the rem inside the @media doesn't have anything to do with the one outside it
+in media queries we tend to use em because rem is buggy and definitely not px
+in media queries 1rem != 10px, instead it's 16px.
+eg:@media (max-width = 84em) means UP until 84em.
+convert px to em to use them in @media : 
+1350px / 16 = 84em
+extremly common screen size : 1366px (hd ready screens)
+Breakpoints :
+1344px = smaller desktops,
+1200px = mobile device territory,
+
+*/
+/***********************************************************************/
+/* Queries */
+/***********************************************************************/
+
+
+/*******************************/
+/* BELOW 1344px ( 84em smaller desktops) */
+/*******************************/
+@media (max-width: 84em){
+    .hero{
+        max-width: 120rem;
+    }
+    .heading-primary{
+        font-size: 4.4rem;
+    }
+    .gallery{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+/*******************************/
+/* BELOW 1200px (75em Landscape Tablets) */
+/*******************************/
+/* sizing everything using rem in our css has the advantage that
+    now we could use the html 62.5% to control the size
+    of out entire  page using media queries (changing the definiton
+    of what 1 rem really is*/
+@media (max-width: 75em){
+    html{
+        /* in css we used html to 62.5% which is 10px
+            in queries we're gonna use only 9px which is 9 / 19 = 0.5625
+            which is 56.25% */
+        font-size: 56.25% ;
+    }
+    .grid{
+        column-gap: 4.8rem;
+        row-gap: 6.4rem;
+    }
+    .heading-secondary{
+        font-size: 3.6rem;
+    }
+    .heading-tertiary{
+        font-size: 2.4rem;
+    }
+    .header{
+        padding: 0 3.2rem;
+    }
+    .main-nav-list{
+        gap: 3.2rem ;
+    }
+    .hero{  
+        gap: 4.8rem;
+    }
+    .testimonials-container{
+        padding: 9.6rem 3.2rem;
+    }
+    
+}
+/*******************************/
+/* BELOW 944px (59em Tablets) */
+/*******************************/
+/* 8px / 16px = 0.5 = 50% */
+@media (max-width: 59em){
+    html{
+        font-size: 50%;
+    }
+    .hero{
+        grid-template-columns:  1fr;
+        padding: 0 8rem;
+        gap: 6.4rem;
+    }
+    .hero-img{
+        width: 60%;
+    }
+    /* because the img is an inline element, therefore it's
+        also affected by the text-align:center */
+    .hero-text-box,
+    .hero-img-box{
+        text-align: center;
+    }
+    .heading-primary{
+
+    }
+    .delivered-meals{
+        justify-content: center;
+        margin-top: 3.2rem;
+    }
+    .logos img{
+        height: 2.4rem;
+    }
+    .step-number{
+        font-size: 7.4rem;
+    }
+    .meal-content {
+        padding: 2.4rem 3.2rem 3.2rem 3.2rem;
+    }
+    .section-testimonials {
+        grid-template-columns: 1fr;
+    }
+    .gallery {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    .cta{
+        /* making the img a little bit bigger
+        3/5 = 60% + 2/5 = 40% */
+        grid-template-columns: 3fr 2fr;
+    }
+    .cta-form {
+        grid-template-columns: 1fr;
+    }
+    .btn--form{
+        margin-top: 1.2rem;
+    }
+    .btn-mobile-nav{
+        display: block;
+        z-index: 1000;
+    }
+    .main-nav{
+        background-image: linear-gradient(to left bottom , rgb(206, 183, 52), rgb(255, 255, 255));
+        /* the parent container is .header, so we're setting it
+            to position: relative */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        /* hiding the nav on the very right side
+            but it will still remain visible by scrolling horizontally
+            that's why we're using the overflow-x: hidden on the html and body */
+        transform: translateX(100%);
+        
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.5s ease-in;
+
+
+        /* hide navigation 
+        display: none;*/
+        /* however annimaitons/transitions won't work if we set the display to none */
+        /* we're gonna add a class "nav-open" (that will be added and removed using javascript) 
+        to the header whenever the navigation is open */
+
+        /* steps to properly hide it */
+        /* 1)- hide it visually */
+        opacity: 0;
+        /* 2)- make it unaccessible to mouse & keyboard */
+        pointer-events: none;
+        /* 3)- hide it from screen readers */
+        visibility: hidden;
+    }
+
+    /* since nav-open is a PÄRENT of .main-nav-list */
+    .nav-open .main-nav{
+        /* correctly showing back the elemnt (reverse the 3 steps) */
+        opacity: 1;
+        pointer-events: auto;
+        visibility: visible;
+        /* undoing the transform when the nav is open */
+        transform: translateX(0);
+    }
+    /* only show the icon when the nav-open class is in the html */
+    .nav-open .icon-mobile-nav[name="close-outline"]{
+        display: block;
+    }
+    /* hiding menu icon when nav-open is present */
+    .nav-open .icon-mobile-nav[name="menu-outline"]{
+        display: none;
+    }
+    .main-nav-list{
+        flex-direction: column;
+        gap: 4.8rem;
+    }
+    .main-nav-link:link,
+    .main-nav-link:visited{
+        font-size: 3rem;
+    }
+}
+
+/*******************************/
+/* BELOW 704px (44em smaller tablets) */
+/*******************************/
+@media (max-width: 44em){
+    /* transforming the grids that have 3 to 4 columns to only 2 */
+    .grid--3-cols,
+    .grid--4-cols{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .diet{
+        grid-column: 1 / -1;
+        /* for the individual grid item */
+        justify-self: center;
+    }
+    .heading-secondary{
+        margin-bottom: 4.8rem;
+    }
+    .pricing-plan{
+        width: 100%;
+    }
+    .grid--footer{
+        grid-template-columns: repeat(6, 1fr);
+    }
+    .logo-col,
+    .address-col{
+        grid-column: span 3;
+    }
+    .nav-col{
+        /* grid-row: 1 to make them appear first */
+        grid-row: 1;
+        grid-column: span 2;
+        margin-bottom: 3.2rem;
+    }
+}
+/*******************************/
+/* BELOW 544px (34em Mobile) */
+/*******************************/
+@media (max-width: 34em){
+    .grid{
+        row-gap: 4.8rem;
+    }
+    .grid--2-cols,
+    .grid--3-cols,
+    .grid--4-cols{
+        grid-template-columns: 1fr;
+    }
+    .section-hero{
+        padding: 2.4rem 0 6.4rem 0;
+    }
+    .hero{
+        padding: 0 3.2rem;
+    }
+    .btn,
+    .btn:link,
+    .btn:visited{
+        padding: 2.4rem 1.6rem;
+    }
+    .hero-img{
+        width: 80%;
+    }
+    .logos img{
+        height: 1.2rem;
+    }
+    /* the 2nd child of the container */
+    .step-img-box:nth-child(2){
+        grid-row: 1;
+    }
+    .step-img-box:nth-child(6){
+        grid-row: 5;
+    }
+    .step-img-box{
+        transform: translateY(2.4rem);
+    }
+    .testimonials{
+        grid-template-columns: 1fr;
+    }
+    .gallery{
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.2rem;
+    }
+    .cta{
+        grid-template-columns: 1fr;
+    }
+    .cta-text-box{
+        padding: 3.2rem;
+    }
+    .cta-img-box{
+        height: 32rem;
+        grid-row: 1;
+    }
+}
+
+
+/* Font size System (px)
+- 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 
+- SPACING SYSTEM (px) 
+-2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128 */
+
+/*******************************/
+/* Fixing Safari Flexbox Gap */
+/*******************************/
+
+.no-flexbox-gap .main-nav-list li:not(:last-child) {
+    margin-right: 4.8rem;
+  }
+  
+  .no-flexbox-gap .list-item:not(:last-child) {
+    margin-bottom: 1.6rem;
+  }
+  
+  .no-flexbox-gap .list-icon:not(:last-child) {
+    margin-right: 1.6rem;
+  }
+  
+  .no-flexbox-gap .delivered-faces {
+    margin-right: 1.6rem;
+  }
+  
+  .no-flexbox-gap .meal-attribute:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+  
+  .no-flexbox-gap .meal-icon {
+    margin-right: 1.6rem;
+  }
+  
+  .no-flexbox-gap .footer-row div:not(:last-child) {
+    margin-right: 6.4rem;
+  }
+  
+  .no-flexbox-gap .social-links li:not(:last-child) {
+    margin-right: 2.4rem;
+  }
+  
+  .no-flexbox-gap .footer-nav li:not(:last-child) {
+    margin-bottom: 2.4rem;
+  }
+  
+  @media (max-width: 75em) {
+    .no-flexbox-gap .main-nav-list li:not(:last-child) {
+      margin-right: 3.2rem;
+    }
+  }
+  
+  @media (max-width: 59em) {
+    .no-flexbox-gap .main-nav-list li:not(:last-child) {
+      margin-right: 0;
+      margin-bottom: 4.8rem;
+    }
+  }

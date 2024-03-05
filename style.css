@@ -1,0 +1,622 @@
+
+/**************************/
+/* HEADER SECTION */
+/**************************/
+.header{
+    /* position relative because the .main-nav is absolute in media-queries
+        so that it can take the entire view-port in the media queries
+        for the mobile version */
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fae5d3;
+    /* we're giving a fixed height
+    because we want the header to be sticky later */
+    height: 9.6rem;
+    padding: 0 4.8rem;
+}
+.address{
+    margin-bottom: 2.4rem;
+}
+.logo{
+    height: 2.2rem;
+}
+.main-nav-list{
+    list-style: none;
+    display: flex;
+    gap: 4.8rem ;
+    align-items: center;
+}
+.main-nav-link:link,
+.main-nav-link:visited{
+    display: inline-block;
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    /* PUT TRANSITION ON ORIGINAL STATE*/
+    transition: all 0.3s;
+}
+.main-nav-link:hover,
+.main-nav-link:active{
+    color: #e67e22;
+}
+.main-nav-link.nav-cta:link,
+.main-nav-link.nav-cta:visited{
+    padding: 1.2rem 2.4rem;
+    background-color: #e67e22;
+    color: #fff;
+    border-radius: 9px;
+}
+.main-nav-link.nav-cta:hover,
+.main-nav-link.nav-cta:active{
+    background-color: #cf711f;
+}
+/* MOBILE NAV */
+.btn-mobile-nav{
+    border: none;
+    background: none;
+    cursor: pointer;
+    /* by default this should be hidden */
+    display: none;
+}
+.icon-mobile-nav{
+    height: 4.8rem;
+    width: 4.8rem;
+    color: #333;
+}
+/* SELECTION USING ATTRIBUTES 
+<ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+<ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+*/
+.icon-mobile-nav[name="close-outline"]{
+    display: none;
+}
+
+/* STICKY NAVIGATION */
+/* apply these styles to the .header ONLY if the .sticky class is a parent of it */
+.sticky .header{
+    /* it will fix it in the viewport */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 99;
+    background-color: rgba(255, 255, 255, 0.97);
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 8rem;
+    box-shadow: 0 1.2rem 3.2rem rgba(0,0,0,0.03);
+}
+
+.sticky .section-hero {
+    /* exact height of the header to make sticky work better */
+    /* since .header is not a parent of .section-hero, we're gonna add the sticky to the body instead */
+    margin-top: 9.6rem;
+}
+/**************************/
+/* HERO SECTION */
+/**************************/
+.section-hero{
+    background-color: #fae5d3;
+    padding: 4.8rem 0 9.6rem 0;
+}
+.hero{
+    max-width: 130rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns:  1fr 1fr;
+    align-items: start;
+    gap: 9.6rem;
+    padding: 0 3.2rem;
+}
+
+.hero-description{
+    font-size: 2rem;
+    line-height: 1.6;
+    margin-bottom: 4.8rem;
+}
+
+.hero-img{
+    width: 100%;
+}
+.delivered-meals{
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    margin-top: 8rem;
+}
+.delivered-imgs{
+    display: flex;
+}
+.delivered-imgs img{
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+    margin-right: -1.6rem;
+    border: 3px solid #FFF;
+}
+.delivered-imgs img:last-child{
+    margin: 0;
+}
+.delivered-text{
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+.delivered-meals p span{
+    color: #b8651b;
+    font-weight: 700;
+}
+/* ------------------------------------------------------------------- */
+/**************************/
+/* FEATURED SECTION */
+/**************************/
+.section-featured{
+    padding: 4.8rem 0 3.2rem 0;
+}
+.heading-featured-in{
+    text-align: center;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.75px;
+    margin-bottom: 2.4rem;
+    color: #888;
+}
+.logos{
+    display: flex;
+    justify-content: space-around;
+}
+.logos img{
+    height: 3.2rem;
+    filter: brightness(0%);
+    opacity: 50%;
+}
+
+/**************************/
+/* HOW SECTION */
+/**************************/
+.section-how {
+    background-color: #fff;
+    padding: 9.6rem 0;
+}
+.step-img-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.step-img-box::before,
+.step-img-box::after{
+    content: "";
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.step-img-box::before{
+    width: 60%;
+    /* height: 60%; this will not work so we're gonna use a trick */
+    /* 60% of parent's width */
+    padding-bottom: 60%;
+    background-color: #fdf2e9;
+    z-index: 1;
+
+}
+.step-img-box::after{
+    width: 45%;
+    padding-bottom: 45%;
+    background-color: #f8d8bd;
+    z-index: 2;
+
+    
+}
+.step-img{
+    width: 35%;
+    z-index: 3;
+}
+.step-number{
+    font-size: 8.6rem;
+    font-weight: 600;
+    color: #ddd;
+    margin-bottom: 1.2rem;
+}
+
+.step-description{
+    font-weight: 400;
+    color: #555;
+    line-height: 1.8;
+    font-size: 1.8rem;
+}
+/**************************/
+/* MEALS SECTION */
+/**************************/
+.meal{
+    /* box-shadow: horizontal vertical blur rgba; */
+    box-shadow: 0 1.4rem 2.8rem rgba(0,0,0,0.2);
+    border-radius: 11px;
+    overflow: hidden;
+    transition: all 0.4s;
+}
+.meal:hover{
+    /* transform: translate(0,-1rem); or */
+    transform: translateY(-1.2rem);
+    box-shadow: 0 3.2rem 6.4rem rgba(0,0,0,0.1);
+
+}
+.section-meals {
+    padding: 9.6rem 0;
+}
+.meal-img{
+    width: 100%;
+}
+.meal-title{
+    color: #333;
+    font-size: 2.4rem;
+    margin-bottom: 3.2rem;
+    font-weight: 600;
+}
+.meal-content{
+    padding: 3.2rem 4.8rem 4.8rem 4.8rem;
+}
+.meal-attributes{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.meal-icon{
+    height: 2.4rem;
+    width: 2.4rem;
+    color: #e67e22;
+}
+.meal-attribute{
+    font-size: 1.8rem;
+    display: flex;
+    gap: 1.6rem;
+    align-items: center;
+}
+.meal-tags{
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1.2rem;
+}
+.tag{
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 11px;
+    text-transform: uppercase;
+    padding: 0.4rem 0.8rem;
+    color: #333;
+    cursor: pointer;
+}
+.tag--vegetarian{
+    background-color: #51cf66;
+}
+.tag--vegan{
+    background-color: #94d82d;
+}
+.tag--paleo{
+    background-color: #ffd43b;
+}
+.all-recipes{
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/**************************/
+/* TESTIMONIALS-GALLERY SECTION */
+/**************************/
+.section-testimonials{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 55fr 45fr;
+    background-color: #fae5d3;
+
+}
+.testimonials{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 8rem;
+    row-gap: 4.8rem;
+}
+.testimonials-container{
+    padding: 9.6rem;
+}
+.testimonial img{
+    border-radius: 50%;
+    width: 6.4rem;
+    margin-bottom: 1.2rem;
+}
+.testimonial-text{
+    font-size: 1.8rem;
+    line-height: 1.8;
+    margin-bottom: 1.6rem;
+}
+.testimonial-name{
+    font-size: 1.6rem;
+    color: #6f6f6f;
+}
+
+
+.gallery{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+    padding: 1.6rem;
+}
+.gallery-item{
+    overflow: hidden;
+}
+.gallery-item img{
+    display: block;
+    width: 100%;
+    transition: all 0.4s;
+}
+.gallery-item img:hover{
+    transform: scale(1.05);
+}
+
+/**************************/
+/* TESTIMONIALS-GALLERY SECTION */
+/**************************/
+.section-pricing{
+    padding: 9.6rem 0;
+}
+.pricing-plan{
+    border-radius: 11px;
+    width: 75%;
+}
+.plan-header{
+    text-align: center;
+    margin-bottom: 4.8rem;
+}
+.plan-name{
+    color: #cf711f;
+    font-weight: 600;
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-bottom: 3.2rem;
+    letter-spacing: 0.75px;
+}
+.plan-price{
+    font-size: 6.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.6rem;
+}
+.plan-price span {
+    font-size: 3rem;
+    font-weight: 500;
+    margin-right: 0.8rem;
+}
+.plan-text{
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #6f6f6f;
+}
+.pricing-plan--starter{
+    justify-self: end;
+    border: 2px solid #fdf2e9;
+    padding: 4.6rem;
+}
+.plan-signup{
+    margin-top: 4.8rem;
+    text-align: center;
+}
+.pricing-plan--complete{
+    justify-self: start;
+    background-color: #fae5d3;
+    padding: 4.8rem;
+    position: relative;
+    overflow: hidden;
+}
+.pricing-plan--complete::after{
+    position: absolute;
+    content: "best value";
+    text-transform: uppercase;
+    background-color: #ffd43b;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #333;
+    padding: 0.8rem 8rem;
+    top: 6%;
+    right: -18%;
+    transform: rotate(45deg);
+}
+.plan-details{
+    font-size: 1.6rem;
+    line-height: 1.6;
+    text-align: center;
+}
+.feature-icon{
+    color: #e67e22;
+    width: 3.2rem;
+    height: 3.2rem;
+    background-color: #fdf2e9;
+    padding: 1.6rem;
+    border-radius: 50%;
+    margin-bottom: 3.2rem;
+}
+.feature-title{
+    font-size: 2.4rem;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 1.6rem;
+}
+.feature-text{
+    line-height: 1.8;
+    font-size: 1.8rem;
+}
+/**************************/
+/* CTA SECTION */
+/**************************/
+.section-cta {
+    /* top / right / bottom / left */
+    /* padding: 9.6rem 0 12.8rem 0; */
+  
+    /* top / horizontal / left */
+    padding: 4.8rem 0 12.8rem;
+}
+.cta{
+    display: grid;
+    /* 2/3 = 66.6% + 1/3 = 33.3% */
+    grid-template-columns: 2fr 1fr;
+    background-image: linear-gradient(to right bottom, #eb984e, #e67e22);
+    border-radius: 11px;
+    overflow: hidden;
+    box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.15);
+
+}
+.cta .heading-secondary {
+    /* color: #45260a; */
+    color: inherit;
+    margin-bottom: 3.2rem;
+  }
+.cta-text{
+    font-size: 1.8rem;
+    line-height: 1.8;
+    margin-bottom: 4.8rem;
+}
+.cta-text-box{
+    padding: 4.8rem 6.4rem 6.4rem 6.4rem;
+    color: #45260a;
+
+}
+.cta-form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3.2rem;
+    row-gap: 2.4rem;
+}
+.cta-form label{
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+}
+.cta-form input,
+.cta-form select{
+    width: 100%;
+    font-size: 1.8rem;
+    padding: 1.2rem;
+    border-radius: 9px;
+    font-family: inherit;
+    color: inherit;
+    border: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    background-color: #fdf2e9;
+}
+.cta-form input::placeholder{
+    color: #aaa;
+}
+.cta *:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.8rem rgba(253, 242, 233, 0.5);
+}
+.cta-img-box {
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(235, 151, 78, 0.35),
+        rgba(230, 125, 34, 0.35)
+      ),
+      url("../img/eating.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+/**************************/
+/* FOOTER SECTION */
+/**************************/
+.footer {
+    padding: 12.8rem 0;
+    border-top: 1px solid #eee;
+    
+  }
+  
+  .grid--footer {
+    grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
+  }
+  
+.logo-col {
+    display: flex;
+    flex-direction: column;
+}
+  
+.footer-logo {
+    display: block;
+    margin-bottom: 3.2rem;
+}
+  
+.social-links {
+    list-style: none;
+    display: flex;
+    gap: 2.4rem;
+}
+  
+.social-icon {
+    height: 2.4rem;
+    width: 2.4rem;
+}
+  
+.copyright {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #767676;
+    margin-top: auto;
+}
+  
+.footer-heading {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 4rem;
+}
+  
+.contacts {
+    font-style: normal;
+    font-size: 1.6rem;
+    line-height: 1.6;
+}
+  
+.address {
+    margin-bottom: 2.4rem;
+}
+  
+.footer-nav {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+  
+.footer-link:link,
+.footer-link:visited {
+    text-decoration: none;
+    font-size: 1.6rem;
+    color: #767676;
+    transition: all 0.3s;
+}
+  
+.footer-link:hover,
+.footer-link:active {
+    color: #555;
+}
+.signature{
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #050C1B linear-gradient(90deg, #050C1B, #1A4055 15%, #1A4055 35%, #050C1B 50%);
+    text-shadow: -1px -1px 4px #0022ffbf,2px 2px 10px #0022ffbf,0 0 20px #0022ffbf;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
